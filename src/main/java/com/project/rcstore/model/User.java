@@ -1,6 +1,10 @@
 package com.project.rcstore.model;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -21,7 +25,9 @@ public class User {
     private String password;
 
     // one user can have many products
-
+    @OneToMany(mappedBy = "user")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    private List<Product> productList;
 
     public User() {
     }
