@@ -25,11 +25,20 @@ public class Product {
     @Column
     private String url;
 
+
     // many products to one user
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public Product() {
     }
