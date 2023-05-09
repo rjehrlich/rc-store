@@ -64,7 +64,7 @@ public class SpringBootCucumberTestDefinitions {
 
     @Then("the product is added")
     public void theProductIsAdded() {
-        
+        Assert.assertEquals(200, response.getStatusCode());
     }
 
     @When("i remove product from my productList")
