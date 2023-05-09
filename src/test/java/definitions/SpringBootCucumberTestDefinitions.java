@@ -88,5 +88,10 @@ public class SpringBootCucumberTestDefinitions {
   request.header("Content-Type", "application/json");
   response = request.get(BASE_URL + port + "/api/products/1");
  }
+
+ @Then("the product is displayed")
+ public void theProductIsDisplayed() {
+     Assert.assertNotNull(response.getBody());
+ }
 }
 
