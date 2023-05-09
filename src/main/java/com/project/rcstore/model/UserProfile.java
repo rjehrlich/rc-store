@@ -21,9 +21,16 @@ public class UserProfile {
 
     //one user can have one profile
     @JsonIgnore
-    @OneToOne
-    @JoinColumn(name = "profile_id")
+    @OneToOne(mappedBy = "userProfile")
     private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public UserProfile() {
     }
