@@ -3,11 +3,11 @@ package com.project.rcstore.seed;
 import com.project.rcstore.model.Product;
 import com.project.rcstore.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-
-public class ProductDataLoader {
+public class ProductDataLoader implements CommandLineRunner {
     @Autowired
     ProductRepository productRepository;
 
