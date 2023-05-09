@@ -26,6 +26,13 @@ public class ProductController {
         return productRepository.findAll();
     }
 
+    @GetMapping(path = "/products/{productId}")
+    public Optional<Product> getProduct(@PathVariable Long productId){
+        return productRepository.findById(productId);
+    }
+
+
+
 
     /**
      * Create product method takes in product object and checks if name already exists. If not return new object saved.
@@ -39,6 +46,26 @@ public class ProductController {
             throw new InformationExistException("Product with name already exist. ");
         } else {
             return productRepository.save(productObject);
+        }
+    }
+
+    @PutMapping(path = "/products/{productId}")
+    public Product updateProduct(@PathVariable Long productId, Product productObject) {
+        Optional<Product> product = productRepository.findById(productId);
+        if (product.isPresent()) {
+            if (productObject.getName().equals(product.get().getName())) {
+                throw new InformationExistException("Product already exists ");
+            } else {
+                Product updateProduct = productRepository.findById(productId).get();
+                updateProduct.setName(productObject.getName());
+                updateProduct.setPrice(productObject.getPrice());
+                updateProduct.setDescription(productObject.getDescription());
+                updateProduct.setBrandName(productObject.getBrandName());
+                updateProduct.setUrl(productObject.getUrl());
+                return productRepository.save(productObject);
+            }
+        } else {
+            throw new InformationNotFoundException(productId + "not found");
         }
     }
     @DeleteMapping(path = "/products/{productId}")
