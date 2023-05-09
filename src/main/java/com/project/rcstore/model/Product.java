@@ -14,6 +14,9 @@ public class Product {
     private Long id;
 
     @Column
+    private String name;
+
+    @Column
     private Double price;
 
     @Column
@@ -45,6 +48,7 @@ public class Product {
 
     public Product(Long id, Double price, String description, String brandName, String url) {
         this.id = id;
+        this.name = name;
         this.price = price;
         this.description = description;
         this.brandName = brandName;
@@ -91,14 +95,24 @@ public class Product {
         this.url = url;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
                 "id=" + id +
+                ", name='" + name + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
                 ", brandName='" + brandName + '\'' +
                 ", url='" + url + '\'' +
+                ", user=" + user +
                 '}';
     }
 }
