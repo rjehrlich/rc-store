@@ -33,7 +33,7 @@ public class SpringBootCucumberTestDefinitions {
     public void aListOfProductsAreAvailable() {
      try {
       ResponseEntity<String> response = new RestTemplate().exchange(BASE_URL + port + "/api/products/", HttpMethod.GET, null, String.class);
-      List<Map<String, String>> products = JsonPath.from(String.valueOf(response.getBody())).get("data");
+      List<Map<String, String>> products = JsonPath.from(String.valueOf(response.getBody())).get();
       Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);// status 200
       Assert.assertTrue(products.size() > 0);
      } catch (HttpClientErrorException e) {
