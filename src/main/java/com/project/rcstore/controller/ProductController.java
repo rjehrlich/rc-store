@@ -3,9 +3,7 @@ package com.project.rcstore.controller;
 import com.project.rcstore.model.Product;
 import com.project.rcstore.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +21,13 @@ public class ProductController {
     @GetMapping(path = "/products/")
     public List<Product> getProducts(){
         return productRepository.findAll();
+    }
+
+    @PostMapping(path = "/products/")
+    public Product createProduct(@RequestBody Product productObject) {
+        Product product = productRepository.findByBrandName(productObject.getBrandName());
+        if (product !=null) {
+
+        }
     }
 }
