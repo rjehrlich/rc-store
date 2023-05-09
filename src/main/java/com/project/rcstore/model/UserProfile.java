@@ -1,5 +1,7 @@
 package com.project.rcstore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,12 @@ public class UserProfile {
 
     @Column
     private String lastName;
+
+    //one user can have one profile
+    @JsonIgnore
+    @OneToOne
+    @JoinColumn(name = "profile_id")
+    private User user;
 
     public UserProfile() {
     }
