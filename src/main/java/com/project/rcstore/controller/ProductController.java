@@ -1,12 +1,14 @@
 package com.project.rcstore.controller;
 
 import com.project.rcstore.exception.InformationExistException;
+import com.project.rcstore.exception.InformationNotFoundException;
 import com.project.rcstore.model.Product;
 import com.project.rcstore.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/")
@@ -38,4 +40,15 @@ public class ProductController {
             return productRepository.save(productObject);
         }
     }
+    @DeleteMapping(path = "/products/{productId}")
+    public Optional<Product> deleteProduct(@PathVariable Long productId) {
+        Optional<Product> product = productRepository.findById(productId);
+        if (product.isPresent()) {
+            productRepository.deleteById(productId);
+            return product;
+        } else {
+            throw new InformationNotFoundException("Product with Id " + productId + " not found");
+        }
+    }
+
 }
