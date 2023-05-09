@@ -1,5 +1,6 @@
 package com.project.rcstore.controller;
 
+import com.project.rcstore.exception.InformationExistException;
 import com.project.rcstore.model.Product;
 import com.project.rcstore.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,11 +24,18 @@ public class ProductController {
         return productRepository.findAll();
     }
 
+    /**
+     * Create product method takes in product object and checks if name already exists. If not return new object saved.
+     * @param productObject
+     * @return
+     */
     @PostMapping(path = "/products/")
     public Product createProduct(@RequestBody Product productObject) {
-        Product product = productRepository.findByBrandName(productObject.getBrandName());
+        Product product = productRepository.findByName(productObject.getName());
         if (product !=null) {
-
+            throw new InformationExistException("Product with name already exist. ");
+        } else {
+            return productRepository.save(productObject);
         }
     }
 }
