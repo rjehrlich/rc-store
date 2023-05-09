@@ -1,5 +1,7 @@
 package com.project.rcstore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -23,6 +25,11 @@ public class Product {
     @Column
     private String url;
 
+    // many products to one user
+    @JsonIgnore
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public Product() {
     }

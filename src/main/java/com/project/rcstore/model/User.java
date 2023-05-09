@@ -20,6 +20,9 @@ public class User {
     @Column
     private String password;
 
+    // one user can have many products
+
+
     public User() {
     }
 
