@@ -7,6 +7,7 @@ import io.cucumber.java.en.When;
 public class SpringBootCucumberTestDefinitions {
     @Given("a list of products are available")
     public void aListOfProductsAreAvailable() {
+
         
     }
 
@@ -27,5 +28,6 @@ public class SpringBootCucumberTestDefinitions {
 
     @Then("the product is removed")
     public void theProductIsRemoved() {
+
     }
 }
