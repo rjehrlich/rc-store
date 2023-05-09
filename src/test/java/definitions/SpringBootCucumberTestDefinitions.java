@@ -79,4 +79,14 @@ public class SpringBootCucumberTestDefinitions {
     public void theProductIsRemoved() {
      Assert.assertEquals(200, response.getStatusCode());
     }
+
+ @When("i find a product by id")
+ public void iFindAProductById() {
+  RestAssured.baseURI = BASE_URL;
+  RequestSpecification request = RestAssured.given();
+  // states that Request body is a JSON
+  request.header("Content-Type", "application/json");
+  response = request.get(BASE_URL + port + "/api/products/1");
+ }
 }
+
