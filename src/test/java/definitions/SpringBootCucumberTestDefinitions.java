@@ -69,7 +69,10 @@ public class SpringBootCucumberTestDefinitions {
 
     @When("i remove product from my productList")
     public void iRemoveProductFromMyProductList() {
-        
+     RestAssured.baseURI = BASE_URL;
+     RequestSpecification request = RestAssured.given();
+     request.header("Content-Type", "application/json");
+     response = request.delete(BASE_URL + port + "/api/products/1/");
     }
 
     @Then("the product is removed")
