@@ -6,7 +6,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.cucumber.spring.CucumberContextConfiguration;
 import io.restassured.path.json.JsonPath;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import org.json.JSONException;
+import org.json.JSONObject;
 import org.junit.Assert;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -15,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
+
 
 import java.util.List;
 import java.util.Map;
@@ -42,9 +47,20 @@ public class SpringBootCucumberTestDefinitions {
     }
 
     @When("i add a product to my productList")
-    public void iAddAProductToMyProductList() {
-
-   }
+    public void iAddAProductToMyProductList() throws JSONException {
+     RestAssured.baseURI = BASE_URL;
+     RequestSpecification request = RestAssured.given();
+     // payload
+     JSONObject requestBody = new JSONObject();
+     requestBody.put("price", "14.00");
+     requestBody.put("description", "socks");
+     requestBody.put("brandName", "Hanes");
+     requestBody.put("URL", "https://www.hanes.com/wp907.html");
+     request.header("Content-Type", "application/json");
+     // attach the payload to the request body and send to url
+     response = request.body(requestBody.toString())
+             .post(BASE_URL + port + "/api/products/");
+    }
 
     @Then("the product is added")
     public void theProductIsAdded() {
