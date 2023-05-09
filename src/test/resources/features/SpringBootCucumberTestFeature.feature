@@ -5,7 +5,7 @@ Feature: RestApi Functionalities
     When i add a product to my productList
     Then the product is added
     When i remove product from my productList
-#    Then the product is removed
+    Then the product is removed
 
 
 

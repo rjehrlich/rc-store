@@ -77,6 +77,6 @@ public class SpringBootCucumberTestDefinitions {
 
     @Then("the product is removed")
     public void theProductIsRemoved() {
-
+     Assert.assertEquals(200, response.getStatusCode());
     }
 }
