@@ -59,7 +59,7 @@ public class ProductService {
                 updateProduct.setDescription(productObject.getDescription());
                 updateProduct.setBrandName(productObject.getBrandName());
                 updateProduct.setUrl(productObject.getUrl());
-                return productRepository.save(productObject);
+                return productRepository.save(updateProduct);
             }
         } else {
             throw new InformationNotFoundException(productId + "not found");
