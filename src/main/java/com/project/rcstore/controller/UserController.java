@@ -30,8 +30,9 @@ public class UserController {
 
 //         complete after JWT token added
 //         http://localhost:8080/auth/users/login
-         @PostMapping(path = "/login/")
+    @PostMapping(path = "/login/")
     public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
         return userService.loginUser(loginRequest);
-         }
     }
+
+}
