@@ -1,8 +1,7 @@
 package com.project.rcstore.controller;
 
-import com.project.rcstore.exception.InformationExistException;
 import com.project.rcstore.model.User;
-import com.project.rcstore.repository.UserRepository;
+import com.project.rcstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,25 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(path = "/auth/users/")
 public class UserController {
 
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Autowired
-    public void setUserRepository(UserRepository userRepository) {
-        this.userRepository = userRepository;
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 
     // accepting userObject
     // http://localhost:8080/auth/users/register
     @PostMapping(path = "/register/")
     public User createUser(@RequestBody User userObject) {
-        if (!userRepository.existsByEmailAddress(userObject.getEmailAddress())) {
-            return userRepository.save(userObject);
-        } else {
-            throw new InformationExistException("User email already exist");
-        }
+        return userService.createUser(userObject);
     }
 
-    // complete after JWT token added
-    // http://localhost:8080/auth/users/login
-    // @PostMapping(path = "/login/")
-}
+        // complete after JWT token added
+        // http://localhost:8080/auth/users/login
+        // @PostMapping(path = "/login/")
+    }
