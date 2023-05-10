@@ -1,8 +1,10 @@
 package com.project.rcstore.controller;
 
 import com.project.rcstore.model.User;
+import com.project.rcstore.request.LoginRequest;
 import com.project.rcstore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +28,10 @@ public class UserController {
         return userService.createUser(userObject);
     }
 
-        // complete after JWT token added
-        // http://localhost:8080/auth/users/login
-        // @PostMapping(path = "/login/")
+//         complete after JWT token added
+//         http://localhost:8080/auth/users/login
+         @PostMapping(path = "/login/")
+    public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
+        return userService.loginUser(loginRequest);
+         }
     }
