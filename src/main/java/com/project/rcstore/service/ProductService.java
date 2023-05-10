@@ -6,10 +6,10 @@ import com.project.rcstore.model.Product;
 import com.project.rcstore.model.User;
 import com.project.rcstore.repository.ProductRepository;
 import com.project.rcstore.repository.UserRepository;
+import com.project.rcstore.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +30,12 @@ public class ProductService {
         this.userRepository = userRepository;
     }
 
+    // allows to get info about which user is logged in from the jwt token
+    public static User getCurrentLoggedInUser() {
+        MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return userDetails.getUser();
+    }
+
     public List<Product> getProducts(){
         return productRepository.findAll();
     }
@@ -39,10 +45,11 @@ public class ProductService {
     }
 
     public Product createProduct(Product productObject) {
-        Product product = productRepository.findByName(productObject.getName());
+        Product product = productRepository.findByUserIdAndName(ProductService.getCurrentLoggedInUser().getId(), productObject.getName());
         if (product !=null) {
             throw new InformationExistException("Product with name already exist. ");
         } else {
+            productObject.setUser(getCurrentLoggedInUser());
             return productRepository.save(productObject);
         }
     }

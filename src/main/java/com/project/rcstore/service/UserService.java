@@ -60,7 +60,7 @@ public class UserService {
             final String JWT = jwtUtils.generateJwtToken(myUserDetails);
             return ResponseEntity.ok(new LoginResponse(JWT));
         } catch (Exception e) {
-            return ResponseEntity.ok(new LoginResponse("Error : user name or password is incorrect"));
+            return ResponseEntity.ok(new LoginResponse("Error : email or password is incorrect"));
         }
 
     }
