@@ -31,7 +31,7 @@ public class ProductService {
     }
 
     public List<Product> getProducts(){
-        List<Product> products = productRepository.findByUserId(ProductService.getCurrentLoggedInUser().getId());
+        return productRepository.findAll();
     }
 
     public Optional<Product> getProduct(@PathVariable Long productId){
@@ -48,7 +48,7 @@ public class ProductService {
     }
 
     public Product updateProduct(@PathVariable Long productId, Product productObject) {
-        Optional<Product> product = productRepository.findById(productId);
+        Optional<Product> product = getProduct(productId);
         if (product.isPresent()) {
             if (productObject.getName().equals(product.get().getName())) {
                 throw new InformationExistException("Product already exists ");
@@ -66,15 +66,6 @@ public class ProductService {
         }
     }
 
-    public Optional<Product> deleteProduct(@PathVariable Long productId) {
-        Optional<Product> product = productRepository.findById(productId);
-        if (product.isPresent()) {
-            productRepository.deleteById(productId);
-            return product;
-        } else {
-            throw new InformationNotFoundException("Product with Id " + productId + " not found");
-        }
-    }
 
     public Optional<Product> deleteProduct(@PathVariable Long productId) {
         Optional<Product> product = productRepository.findById(productId);
