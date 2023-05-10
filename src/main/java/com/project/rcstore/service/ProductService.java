@@ -34,11 +34,11 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Optional<Product> getProduct(@PathVariable Long productId){
+    public Optional<Product> getProduct(Long productId){
         return productRepository.findById(productId);
     }
 
-    public Product createProduct(@RequestBody Product productObject) {
+    public Product createProduct(Product productObject) {
         Product product = productRepository.findByName(productObject.getName());
         if (product !=null) {
             throw new InformationExistException("Product with name already exist. ");
@@ -47,7 +47,7 @@ public class ProductService {
         }
     }
 
-    public Product updateProduct(@PathVariable Long productId, Product productObject) {
+    public Product updateProduct(Long productId, Product productObject) {
         Optional<Product> product = getProduct(productId);
         if (product.isPresent()) {
             if (productObject.getName().equals(product.get().getName())) {
@@ -67,7 +67,7 @@ public class ProductService {
     }
 
 
-    public Optional<Product> deleteProduct(@PathVariable Long productId) {
+    public Optional<Product> deleteProduct(Long productId) {
         Optional<Product> product = productRepository.findById(productId);
         if (product.isPresent()) {
             productRepository.deleteById(productId);
@@ -77,7 +77,7 @@ public class ProductService {
         }
     }
 
-    public User createUser(@RequestBody User userObject) {
+    public User createUser(User userObject) {
         if (!userRepository.existsByEmailAddress(userObject.getEmailAddress())) {
             return userRepository.save(userObject);
         } else {
