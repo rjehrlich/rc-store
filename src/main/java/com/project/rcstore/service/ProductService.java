@@ -70,21 +70,16 @@ public class ProductService {
     }
 
     public Product updateProduct(Long productId, Product productObject) {
-        Optional<Product> product = Optional.ofNullable(productRepository.findByIdAndUserId(productId, getCurrentLoggedInUser().getId()));
-        if (product.isPresent()) {
-            if (productObject.getName().equals(product.get().getName())) {
-                throw new InformationExistException("Product already exists ");
-            } else {
-                Product updateProduct = productRepository.findById(productId).get();
-                updateProduct.setName(productObject.getName());
-                updateProduct.setPrice(productObject.getPrice());
-                updateProduct.setDescription(productObject.getDescription());
-                updateProduct.setBrandName(productObject.getBrandName());
-                updateProduct.setUrl(productObject.getUrl());
-                return productRepository.save(updateProduct);
-            }
+        Product product = productRepository.findByIdAndUserId(productId, ProductService.getCurrentLoggedInUser().getId());
+        if (product == null) {
+                throw new InformationNotFoundException(productId + "not found");
         } else {
-            throw new InformationNotFoundException(productId + "not found");
+            product.setName(productObject.getName());
+            product.setPrice(productObject.getPrice());
+            product.setDescription(productObject.getDescription());
+            product.setBrandName(productObject.getBrandName());
+            product.setUrl(productObject.getUrl());
+            return productRepository.save(product);
         }
     }
 
