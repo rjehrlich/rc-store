@@ -20,11 +20,20 @@ public class ProductController {
         this.productService = productService;
     }
 
+    /**
+     * getProducts calls the getProduct method in the productService and
+     * @return a list object of products from db
+     */
     @GetMapping(path = "/products/")
     public List<Product> getProducts() {
         return productService.getProducts();
     }
 
+    /**
+     * getProduct calls the getProduct method in the productService passing in
+     * @param productId
+     * @return a single product by that id
+     */
     @GetMapping(path = "/products/{productId}")
     public Optional<Product> getProduct(@PathVariable Long productId) {
         return productService.getProduct(productId);
@@ -33,7 +42,6 @@ public class ProductController {
 
     /**
      * Create product method takes in product object and checks if name already exists. If not return new object saved.
-     *
      * @param productObject
      * @return
      */
