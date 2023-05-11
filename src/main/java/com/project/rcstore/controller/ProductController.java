@@ -51,6 +51,12 @@ public class ProductController {
         return productService.createProduct(productObject);
     }
 
+    /**
+     * updateProduct method calls updateProduct method from the productService with
+     * @param productId
+     * @param productObject and
+     * @return to the user the updated product information
+     */
     @PutMapping(path = "/products/{productId}")
     public Product updateProduct(@PathVariable Long productId, @RequestBody Product productObject) {
         return productService.updateProduct(productId, productObject);
