@@ -18,6 +18,11 @@ public class JWTUtils {
     @Value("${jwt-expiration-ms}")
     private int jwtExpirationMs;
 
+    /**
+     * required MyUserDetails in order to generate a JWT from username, issue date, expiration date, secret
+     * @param myUserDetails
+     * @return
+     */
     public String generateJwtToken(MyUserDetails myUserDetails) {
         return Jwts.builder()
                 .setSubject((myUserDetails.getUsername()))
@@ -27,6 +32,11 @@ public class JWTUtils {
                 .compact();
     }
 
+    /**
+     * runs for every request grab userName from the token
+     * @param token
+     * @return
+     */
     public String getUserNameFromJwtToken(String token) {
         return Jwts.parserBuilder().setSigningKey(jwtSecret).build().parseClaimsJws(token).getBody().getSubject();
     }
