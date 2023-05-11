@@ -30,7 +30,11 @@ public class ProductService {
         this.userRepository = userRepository;
     }
 
-    // allows to get info about which user is logged in from the jwt token
+    /**
+     * getCurrentLoggedInUser allows access to current logged in users information
+     * by using the SecurityContext method and
+     * @return that user from the userDetails instance
+     */
     public static User getCurrentLoggedInUser() {
         MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return userDetails.getUser();
