@@ -27,12 +27,16 @@ public class User {
     private String password;
 
 
-    // one user can have many products
+    /**
+     * One user can have many products. Mapped by user table.
+     */
     @OneToMany(mappedBy = "user")
     @LazyCollection(LazyCollectionOption.FALSE)
     private List<Product> productList;
 
-    //one user can only have one profile
+    /**
+     * One user can only have one profile. Joined by profile id column.
+     */
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profile_id", referencedColumnName = "id")
     private UserProfile userProfile;

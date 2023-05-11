@@ -29,7 +29,9 @@ public class Product {
     private String url;
 
 
-    // many products to one user
+    /**
+     * Many products to one user. Joined by user id.
+     */
     @ManyToOne
     @JoinColumn(name = "user_id")
     @JsonIgnore
