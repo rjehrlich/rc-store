@@ -19,7 +19,9 @@ public class UserProfile {
     @Column
     private String lastName;
 
-    //one user can have one profile
+    /**
+     * One user can have one profile.
+     */
     @JsonIgnore
     @OneToOne(mappedBy = "userProfile")
     private User user;
