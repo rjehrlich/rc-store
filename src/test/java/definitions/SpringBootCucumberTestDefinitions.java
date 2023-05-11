@@ -12,6 +12,7 @@ import io.restassured.specification.RequestSpecification;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.junit.Assert;
+import org.junit.Before;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpMethod;
@@ -34,8 +35,19 @@ public class SpringBootCucumberTestDefinitions {
 
     private static Response response;
 
+    public String getToken() throws Exception {
+        RequestSpecification request = RestAssured.given();
+        JSONObject requestBody = new JSONObject();
+        requestBody.put("email", "levi@yahoo.com");
+        requestBody.put("password", "34jeans");
+        request.header("Content-Type", "application/json");
+        response = request.body(requestBody.toString()).post(BASE_URL + port + "/auth/users/login/");
+        return response.jsonPath().getString("message");
+    }
+
     @Given("a list of products are available")
     public void aListOfProductsAreAvailable() {
+        System.out.println("calling list of product");
         try {
             ResponseEntity<String> response = new RestTemplate().exchange(BASE_URL + port + "/api/products/", HttpMethod.GET, null, String.class);
             List<Map<String, String>> products = JsonPath.from(String.valueOf(response.getBody())).get();
@@ -47,9 +59,9 @@ public class SpringBootCucumberTestDefinitions {
     }
 
     @When("i add a product to my productList")
-    public void iAddAProductToMyProductList() throws JSONException {
+    public void iAddAProductToMyProductList() throws Exception {
         RestAssured.baseURI = BASE_URL;
-        RequestSpecification request = RestAssured.given();
+        RequestSpecification request = RestAssured.given().header("Authorization", "Bearer " + getToken());
         // payload
         JSONObject requestBody = new JSONObject();
         requestBody.put("price", "14.00");
@@ -68,9 +80,9 @@ public class SpringBootCucumberTestDefinitions {
     }
 
     @When("i remove product from my productList")
-    public void iRemoveProductFromMyProductList() {
+    public void iRemoveProductFromMyProductList() throws Exception {
         RestAssured.baseURI = BASE_URL;
-        RequestSpecification request = RestAssured.given();
+        RequestSpecification request = RestAssured.given().header("Authorization", "Bearer " + getToken());
         request.header("Content-Type", "application/json");
         response = request.delete(BASE_URL + port + "/api/products/1/");
     }
@@ -78,16 +90,18 @@ public class SpringBootCucumberTestDefinitions {
     @Then("the product is removed")
     public void theProductIsRemoved() {
         Assert.assertEquals(200, response.getStatusCode());
+        Assert.assertNotNull(response.getBody());
     }
 
     @When("i find a product by id")
-    public void iFindAProductById() {
+    public void iFindAProductById() throws Exception {
         RestAssured.baseURI = BASE_URL;
-        RequestSpecification request = RestAssured.given();
+        RequestSpecification request = RestAssured.given().header("Authorization", "Bearer " + getToken());
         // states that Request body is a JSON
         request.header("Content-Type", "application/json");
         response = request.get(BASE_URL + port + "/api/products/1");
     }
+
 
     @Then("the product is displayed")
     public void theProductIsDisplayed() {
