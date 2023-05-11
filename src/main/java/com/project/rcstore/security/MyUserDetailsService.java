@@ -17,6 +17,12 @@ public class MyUserDetailsService implements UserDetailsService {
         this.userService = userService;
     }
 
+    /**
+     * find user from db
+     * @param email
+     * @return once we find user we need user details
+     * @throws UsernameNotFoundException
+     */
     @Override
     public UserDetails loadUserByUsername(String emailAddress) throws UsernameNotFoundException {
         User user = userService.findUserByEmailAddress(emailAddress);
