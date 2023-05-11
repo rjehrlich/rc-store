@@ -79,6 +79,7 @@ public class ProductService {
             product.setDescription(productObject.getDescription());
             product.setBrandName(productObject.getBrandName());
             product.setUrl(productObject.getUrl());
+            product.setUser(ProductService.getCurrentLoggedInUser());
             return productRepository.save(product);
         }
     }
