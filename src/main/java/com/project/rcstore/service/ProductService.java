@@ -66,6 +66,7 @@ public class ProductService {
             // set the current logged in user to product object before saving to db
             productObject.setUser(getCurrentLoggedInUser());
             return productRepository.save(productObject);
+
         }
     }
 

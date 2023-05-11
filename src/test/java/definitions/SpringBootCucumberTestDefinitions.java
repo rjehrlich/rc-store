@@ -51,7 +51,9 @@ public class SpringBootCucumberTestDefinitions {
         try {
             ResponseEntity<String> response = new RestTemplate().exchange(BASE_URL + port + "/api/products/", HttpMethod.GET, null, String.class);
             List<Map<String, String>> products = JsonPath.from(String.valueOf(response.getBody())).get();
-            Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);// status 200
+            Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
+            System.out.println(products);
+            System.out.println("------------------------------------");// status 200
             Assert.assertTrue(products.size() > 0);
         } catch (HttpClientErrorException e) {
             e.printStackTrace();
@@ -61,8 +63,9 @@ public class SpringBootCucumberTestDefinitions {
     @When("i add a product to my productList")
     public void iAddAProductToMyProductList() throws Exception {
         RestAssured.baseURI = BASE_URL;
-        RequestSpecification request = RestAssured.given().header("Authorization", "Bearer " + getToken());
+//        RequestSpecification request = RestAssured.given().header("Authorization", "Bearer " + getToken());
         // payload
+        RequestSpecification request = RestAssured.given();
         JSONObject requestBody = new JSONObject();
         requestBody.put("price", "14.00");
         requestBody.put("description", "socks");
@@ -76,7 +79,7 @@ public class SpringBootCucumberTestDefinitions {
 
     @Then("the product is added")
     public void theProductIsAdded() {
-        Assert.assertEquals(200, response.getStatusCode());
+        Assert.assertEquals(201, response.getStatusCode());
     }
 
     @When("i remove product from my productList")

@@ -3,6 +3,7 @@ package com.project.rcstore.controller;
 import com.project.rcstore.model.Product;
 import com.project.rcstore.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -37,6 +38,7 @@ public class ProductController {
      * @return
      */
     @PostMapping(path = "/products/")
+    @ResponseStatus(HttpStatus.CREATED)
     public Product createProduct(@RequestBody Product productObject) {
         return productService.createProduct(productObject);
     }
