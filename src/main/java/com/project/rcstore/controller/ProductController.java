@@ -62,6 +62,11 @@ public class ProductController {
         return productService.updateProduct(productId, productObject);
     }
 
+    /**
+     * deleteProduct method calls the deleteProduct method in the productService with
+     * @param productId and
+     * @returns to the user the deleted product by id
+     */
     @DeleteMapping(path = "/products/{productId}")
     public Optional<Product> deleteProduct(@PathVariable Long productId) {
         return productService.deleteProduct(productId);
