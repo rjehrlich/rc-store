@@ -41,11 +41,21 @@ public class ProductService {
     }
 
     public List<Product> getProducts() {
-        return productRepository.findAll();
+        List<Product> products = productRepository.findByUserId(ProductService.getCurrentLoggedInUser().getId());
+        if (products.isEmpty()) {
+            throw new InformationNotFoundException("no products found for user id " + ProductService.getCurrentLoggedInUser().getId());
+        } else {
+            return products;
+        }
     }
 
     public Optional<Product> getProduct(Long productId) {
-        return productRepository.findById(productId);
+        Product product = productRepository.findByIdAndUserId(productId, ProductService.getCurrentLoggedInUser().getId());
+        if (product == null) {
+            throw new InformationNotFoundException("Product with id " + productId + " not found");
+        } else {
+            return Optional.of(product);
+        }
     }
 
     public Product createProduct(Product productObject) {
@@ -53,13 +63,14 @@ public class ProductService {
         if (product != null) {
             throw new InformationExistException("Product with name already exist. ");
         } else {
+            // set the current logged in user to product object before saving to db
             productObject.setUser(getCurrentLoggedInUser());
             return productRepository.save(productObject);
         }
     }
 
     public Product updateProduct(Long productId, Product productObject) {
-        Optional<Product> product = getProduct(productId);
+        Optional<Product> product = Optional.ofNullable(productRepository.findByIdAndUserId(productId, getCurrentLoggedInUser().getId()));
         if (product.isPresent()) {
             if (productObject.getName().equals(product.get().getName())) {
                 throw new InformationExistException("Product already exists ");
@@ -79,13 +90,9 @@ public class ProductService {
 
 
     public Optional<Product> deleteProduct(Long productId) {
-        Optional<Product> product = productRepository.findById(productId);
-        if (product.isPresent()) {
-            productRepository.deleteById(productId);
-            return product;
-        } else {
-            throw new InformationNotFoundException("Product with Id " + productId + " not found");
-        }
+        Optional<Product> product = getProduct(productId);
+        productRepository.deleteById(productId);
+        return product;
     }
 
     public User createUser(User userObject) {
