@@ -1,4 +1,4 @@
-package com.project.rcstore.response;
+package com.project.rcstore.model.response;
 
 public class LoginResponse {
     private String message;

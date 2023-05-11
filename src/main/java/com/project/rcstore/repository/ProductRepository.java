@@ -6,8 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-/** ProductRepository extends JpaRepository in order to
- *  inherit several methods for saving, deleting, and finding Movie entities
+/**
+ * ProductRepository extends JpaRepository in order to
+ * inherit several methods for saving, deleting, and finding Movie entities
  */
 @Repository
 public interface ProductRepository extends JpaRepository<Product, Long> {

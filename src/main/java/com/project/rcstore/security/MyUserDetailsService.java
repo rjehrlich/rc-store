@@ -13,7 +13,7 @@ public class MyUserDetailsService implements UserDetailsService {
     private UserService userService;
 
     @Autowired
-    public void setUserService(UserService userService){
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 

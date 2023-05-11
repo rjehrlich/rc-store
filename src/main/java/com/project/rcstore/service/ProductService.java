@@ -36,17 +36,17 @@ public class ProductService {
         return userDetails.getUser();
     }
 
-    public List<Product> getProducts(){
+    public List<Product> getProducts() {
         return productRepository.findAll();
     }
 
-    public Optional<Product> getProduct(Long productId){
+    public Optional<Product> getProduct(Long productId) {
         return productRepository.findById(productId);
     }
 
     public Product createProduct(Product productObject) {
         Product product = productRepository.findByUserIdAndName(ProductService.getCurrentLoggedInUser().getId(), productObject.getName());
-        if (product !=null) {
+        if (product != null) {
             throw new InformationExistException("Product with name already exist. ");
         } else {
             productObject.setUser(getCurrentLoggedInUser());

@@ -1,4 +1,4 @@
-package com.project.rcstore.request;
+package com.project.rcstore.model.request;
 
 public class LoginRequest {
     private String email;

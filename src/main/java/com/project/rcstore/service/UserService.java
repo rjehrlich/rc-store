@@ -3,8 +3,8 @@ package com.project.rcstore.service;
 import com.project.rcstore.exception.InformationExistException;
 import com.project.rcstore.model.User;
 import com.project.rcstore.repository.UserRepository;
-import com.project.rcstore.request.LoginRequest;
-import com.project.rcstore.response.LoginResponse;
+import com.project.rcstore.model.request.LoginRequest;
+import com.project.rcstore.model.response.LoginResponse;
 import com.project.rcstore.security.JWTUtils;
 import com.project.rcstore.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,7 +49,7 @@ public class UserService {
         return userRepository.findUserByEmailAddress(emailAddress);
     }
 
-    // add loginUser once JWT
+
     public ResponseEntity<?> loginUser(LoginRequest loginRequest) {
         UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(loginRequest.getEmail(), loginRequest.getPassword());
         try {
@@ -62,6 +62,5 @@ public class UserService {
         } catch (Exception e) {
             return ResponseEntity.ok(new LoginResponse("Error : email or password is incorrect"));
         }
-
     }
 }

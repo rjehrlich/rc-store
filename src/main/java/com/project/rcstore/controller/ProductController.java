@@ -1,9 +1,6 @@
 package com.project.rcstore.controller;
 
-import com.project.rcstore.exception.InformationExistException;
-import com.project.rcstore.exception.InformationNotFoundException;
 import com.project.rcstore.model.Product;
-import com.project.rcstore.repository.ProductRepository;
 import com.project.rcstore.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,18 +20,19 @@ public class ProductController {
     }
 
     @GetMapping(path = "/products/")
-    public List<Product> getProducts(){
+    public List<Product> getProducts() {
         return productService.getProducts();
     }
 
     @GetMapping(path = "/products/{productId}")
-    public Optional<Product> getProduct(@PathVariable Long productId){
+    public Optional<Product> getProduct(@PathVariable Long productId) {
         return productService.getProduct(productId);
     }
 
 
     /**
      * Create product method takes in product object and checks if name already exists. If not return new object saved.
+     *
      * @param productObject
      * @return
      */
