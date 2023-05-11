@@ -35,7 +35,12 @@ public class UserService {
         this.myUserDetails = myUserDetails;
     }
 
-
+    /**
+     * createUser will accept our
+     * @param userObject
+     * if no user exists by the user email address,
+     * @return create the new user and encrypt their password using encoder
+     */
     public User createUser(User userObject) {
         if (!userRepository.existsByEmailAddress(userObject.getEmailAddress())) {
             userObject.setPassword(passwordEncoder.encode(userObject.getPassword()));
