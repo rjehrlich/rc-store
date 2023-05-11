@@ -19,11 +19,10 @@ public class ProductDataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         loadProductData();
-        loadUserData();
     }
 
     private void loadProductData() {
-        if (productRepository.count() == 0) {
+        if (productRepository.count() == 0 || userRepository.count() == 0) {
             Product product1 = new Product(1L, "Metcon", 120.00, "Running Shoes", "Nike", "https://shorturl.at/bqMSV");
             Product product2 = new Product(2L, "EVA", 49.95, "Sandals", "Birkenstock", "https://shorturl.at/cdkS3");
             Product product3 = new Product(3L, "Sportswear Essentials", 35.00, "T-shirt", "Nike", "https://shorturl.at/CDV47");
@@ -34,15 +33,17 @@ public class ProductDataLoader implements CommandLineRunner {
             productRepository.save(product3);
             productRepository.save(product4);
             productRepository.save(product5);
-        }
-    }
 
-    private void loadUserData() {
-        if (userRepository.count() == 0) {
             User user1 = new User(1L, "Levi2", "levi@yahoo.com", "34jeans");
             User user2 = new User(2L, "John23", "john@gmail.com", "pass123");
             userRepository.save(user1);
+            product1.setUser(user1);
+            product4.setUser(user1);
             userRepository.save(user2);
+            product2.setUser(user2);
+            product3.setUser(user2);
+            product5.setUser(user2);
         }
     }
+
 }
