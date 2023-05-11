@@ -15,9 +15,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
+import org.springframework.http.*;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
@@ -42,6 +40,7 @@ public class SpringBootCucumberTestDefinitions {
         requestBody.put("password", "34jeans");
         request.header("Content-Type", "application/json");
         response = request.body(requestBody.toString()).post(BASE_URL + port + "/auth/users/login/");
+        System.out.println(response.jsonPath().getString("message"));
         return response.jsonPath().getString("message");
     }
 
@@ -49,23 +48,29 @@ public class SpringBootCucumberTestDefinitions {
     public void aListOfProductsAreAvailable() {
         System.out.println("calling list of product");
         try {
-            ResponseEntity<String> response = new RestTemplate().exchange(BASE_URL + port + "/api/products/", HttpMethod.GET, null, String.class);
-            List<Map<String, String>> products = JsonPath.from(String.valueOf(response.getBody())).get();
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.set("Authorization", "Bearer " + getToken());
+            HttpEntity<String> request = new HttpEntity<String>("", headers);
+            ResponseEntity<String> response = new RestTemplate().exchange(BASE_URL + port + "/api/products/", HttpMethod.GET, request, String.class);
+            List<Map<String, String>> products = JsonPath.from(String.valueOf(response.getBody())).getList("$");
             Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
-            System.out.println(products);
+            System.out.println(products + "my products");
             System.out.println("------------------------------------");// status 200
             Assert.assertTrue(products.size() > 0);
         } catch (HttpClientErrorException e) {
+            System.out.println("calling catch");
             e.printStackTrace();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
     @When("i add a product to my productList")
     public void iAddAProductToMyProductList() throws Exception {
         RestAssured.baseURI = BASE_URL;
-//        RequestSpecification request = RestAssured.given().header("Authorization", "Bearer " + getToken());
+        RequestSpecification request = RestAssured.given().header("Authorization", "Bearer " + getToken());
         // payload
-        RequestSpecification request = RestAssured.given();
         JSONObject requestBody = new JSONObject();
         requestBody.put("price", "14.00");
         requestBody.put("description", "socks");
