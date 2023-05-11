@@ -30,9 +30,9 @@ public class Product {
 
 
     // many products to one user
-    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id")
+    @JsonIgnore
     private User user;
 
     public User getUser() {

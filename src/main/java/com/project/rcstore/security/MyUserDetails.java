@@ -8,9 +8,6 @@ import java.util.Collection;
 import java.util.HashSet;
 
 public class MyUserDetails implements UserDetails {
-    public User getUser() {
-        return user;
-    }
 
     private User user;
 
@@ -51,6 +48,10 @@ public class MyUserDetails implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public User getUser() {
+        return user;
     }
 }
 
