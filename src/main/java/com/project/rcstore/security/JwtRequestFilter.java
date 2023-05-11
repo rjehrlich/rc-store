@@ -35,6 +35,14 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         return null;
     }
 
+    /**
+     * Get JWT from Authorization header (by removing Bearer prefix)
+     * @param request
+     * @param response
+     * @param filterChain
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
             throws ServletException, IOException {
