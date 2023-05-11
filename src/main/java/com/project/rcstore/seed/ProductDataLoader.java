@@ -25,6 +25,9 @@ public class ProductDataLoader implements CommandLineRunner {
         loadProductData();
     }
 
+    /**
+     * Load product data. Checks if product/user repository is empty, if so create users/product in db.
+     */
     private void loadProductData() {
         if (productRepository.count() == 0 || userRepository.count() == 0) {
             User user1 = new User(1L, "Levi2", "levi@yahoo.com", "34jeans");
