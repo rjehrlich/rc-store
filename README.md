@@ -170,3 +170,12 @@ In order to successfully replicate/ run Cucumber Tests you will need to add this
 ``<cucumber.version>6.8.1</cucumber.version>``
 
 ## Credits
+* Referred back to Java Spring Boot Lesson for explanations: https://git.generalassemb.ly/sureshmelvinsigera/Java-Spring-Boot-lecture/tree/spring-2-7-8
+* [JAVA API](https://docs.oracle.com/en/java/javase/17/docs/api/index.html)
+* [Spring Framework Documentation](https://docs.spring.io/spring-framework/docs/current/reference/html/)
+* Team C: Lorena, Maksym, and Edgar
+  * For helping us out with Spring Security and JWT testing.
+* Team F: Trevor, Tobe, and Dominique 
+  * For helping with git branches and general questions we had throughout implementation.
+* Suresh
+  * Our instructor for helping us throughout our learning journey and being patient debugging issues with us!
