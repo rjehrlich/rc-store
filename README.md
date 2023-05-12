@@ -20,6 +20,9 @@ RC Store API is a clothing wishlist app where you can store multiple products fr
 - ![IntelliJ](https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
 
 ## General Project Approach
+As a group we came together and decided our overall project process would consist of four important pieces. Planning our project in these 4 steps helped us keep on track of our to-do's and requirements. 
+
+We planned out the following in each of the four areas:
 
 ### User Stories
 * As a User, I want to create a profile so that I can save my personal information and preferences
@@ -31,8 +34,7 @@ RC Store API is a clothing wishlist app where you can store multiple products fr
 * As a user, I want to receive email notifications about my order status and shipping updates.
 
 ### ERD Diagram
-
-### Project Plan
+![](/images/Database ERD.png)
 
 ### Endpoint Mappings
 
@@ -52,6 +54,7 @@ RC Store API is a clothing wishlist app where you can store multiple products fr
 | POST         	| http://localhost:8080/auth/users/login    	| /auth/users/login    	| Logs user in              	|
 | POST         	| http://localhost:8080/auth/users/register 	| /auth/users/register 	| Registers/ creates a user 	|
 
+### Project Plan
 
 ## Unsolved Problems / Hurdles
 
