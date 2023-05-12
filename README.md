@@ -7,6 +7,9 @@
 * <a href="installation"> Installation Instructions/ Dependencies</a>
 
 ## Project Description
+RC Store API is a clothing wishlist app where you can store multiple products from your favorite brands to purchase later.
+* RC Store can be used to store all the clothes that match your personal style!
+* You can even use it as a birthday or baby clothes wish list!
 
 ## Tools & Technologies
 - ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
