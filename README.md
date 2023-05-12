@@ -1,5 +1,9 @@
 # RC Store API
 
+## Team RC
+This project was created through the collaboration & teamwork of [Clair Rainwater](https://github.com/Crainh2o) and [Rachel Ehrlich](https://github.com/rjehrlich). Both coming from different backgrounds, this is Clair's first time coding and Rachel has beginner experience. Despite this, we were able to work well together and complete a successful project.
+
+## Table of Contents
 * <a href="project-description"> Project Description</a>
 * <a href="tools-technologies"> Tools & Technologies</a>
 * <a href="general-approach"> General Project Approach</a>
@@ -173,9 +177,9 @@ In order to successfully replicate/ run Cucumber Tests you will need to add this
 * Referred back to Java Spring Boot Lesson for explanations: https://git.generalassemb.ly/sureshmelvinsigera/Java-Spring-Boot-lecture/tree/spring-2-7-8
 * [JAVA API](https://docs.oracle.com/en/java/javase/17/docs/api/index.html)
 * [Spring Framework Documentation](https://docs.spring.io/spring-framework/docs/current/reference/html/)
-* Team C: Lorena, Maksym, and Edgar
+* **Team C**: Lorena, Maksym, and Edgar
   * For helping us out with Spring Security and JWT testing.
-* Team F: Trevor, Tobe, and Dominique 
+* **Team F**: Trevor, Tobe, and Dominique 
   * For helping with git branches and general questions we had throughout implementation.
-* Suresh
+* **Suresh**
   * Our instructor for helping us throughout our learning journey and being patient debugging issues with us!
