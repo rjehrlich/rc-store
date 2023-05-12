@@ -34,7 +34,7 @@ We planned out the following in each of the four areas:
 * As a user, I want to receive email notifications about my order status and shipping updates.
 
 ### ERD Diagram
-![ERD Diagram](/images/Database ERD.png)
+![ERD Diagram](images/Database_ERD.png)
 
 ### Endpoint Mappings
 
@@ -54,6 +54,7 @@ We planned out the following in each of the four areas:
 | POST         	| http://localhost:8080/auth/users/login    	| /auth/users/login    	| Logs user in              	|
 | POST         	| http://localhost:8080/auth/users/register 	| /auth/users/register 	| Registers/ creates a user 	|
 
+--------
 ### Kanban Project Plan
 ![kanban board](images/RC_Store_ProjectPlan.png)
 
