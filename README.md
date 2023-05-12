@@ -23,7 +23,6 @@
 * As a User, I want to be able to view and edit my profile information, including my name, email address, and password.
 * As a User, I want to be able to view and save products in my profile.
 * As a User, I want to be able to delete out of season products.
-
 #### Nice to have in the future:
 * As a user, I want to be able to add products to my cart and checkout securely.
 * As a user, I want to receive email notifications about my order status and shipping updates.
@@ -31,6 +30,25 @@
 ### ERD Diagram
 
 ### Project Plan
+
+### Endpoint Mappings
+
+#### Product Controller
+| HTTP Methods 	| Full URL                             	|           URL          	|     Functionally     	|
+|--------------	|--------------------------------------	|:----------------------:	|:--------------------:	|
+| GET          	| http://localhost:8080/api/products/  	| /products/             	| List of all products 	|
+| GET          	| http://localhost:8080/api/products/1 	| /products/{productId}/ 	| One product by ID    	|
+| POST         	| http://localhost:8080/api/products/  	| /products/             	| Create new product   	|
+| PUT          	| http://localhost:8080/api/products/  	| /products/{productId}/ 	| Save products        	|
+| DELETE       	| http://localhost:8080/api/products/  	| /products/{productId}/ 	| Remove products      	|
+
+#### User Controller
+
+| HTTP Methods 	| Full URL                                  	|          URL         	|        Functionally       	|
+|--------------	|-------------------------------------------	|:--------------------:	|:-------------------------:	|
+| POST         	| http://localhost:8080/auth/users/login    	| /auth/users/login    	| Logs user in              	|
+| POST         	| http://localhost:8080/auth/users/register 	| /auth/users/register 	| Registers/ creates a user 	|
+
 
 ## Unsolved Problems / Hurdles
 
