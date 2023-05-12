@@ -18,11 +18,13 @@ RC Store API is a clothing wishlist app where you can store multiple products fr
 
 ## Tools & Technologies
 - ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-- ![MySQL](https://img.shields.io/badge/MySQL-005C84?style=for-the-badge&logo=mysql&logoColor=white)
 - ![Spring](https://img.shields.io/badge/Spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white)
 - ![Hibernate](https://img.shields.io/badge/Hibernate-59666C?style=for-the-badge&logo=Hibernate&logoColor=white)
 - ![Github](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)
 - ![IntelliJ](https://img.shields.io/badge/IntelliJ_IDEA-000000.svg?style=for-the-badge&logo=intellij-idea&logoColor=white)
+- **Postman** - testing DB requests
+- [Markdown Table Generator](https://www.tablesgenerator.com/markdown_tables)
+- [ERD Tool](https://www.lucidchart.com/)
 
 ## General Project Approach
 As a group we came together and decided our overall project process would consist of four important pieces. Planning our project in these 4 steps helped us keep on track of our to-do's and requirements. 
