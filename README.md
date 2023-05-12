@@ -57,6 +57,8 @@ We planned out the following in each of the four areas:
 ### Kanban Project Plan
 ![kanban board](images/RC_Store_ProjectPlan.png)
 
+[Project Plan Link](https://github.com/users/rjehrlich/projects/4)
+
 ## Unsolved Problems / Hurdles
 
 ## Installation Instructions/ Dependencies
