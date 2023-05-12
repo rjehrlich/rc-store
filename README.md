@@ -5,6 +5,7 @@
 * <a href="general-approach"> General Project Approach</a>
 * <a href="unsolved-problems"> Unsolved Problems / Hurdles</a>
 * <a href="installation"> Installation Instructions/ Dependencies</a>
+* <a href="credits"> Credits</a>
 
 ## Project Description
 RC Store API is a clothing wishlist app where you can store multiple products from your favorite brands to purchase later.
@@ -61,5 +62,111 @@ We planned out the following in each of the four areas:
 [Project Plan Link](https://github.com/users/rjehrlich/projects/4)
 
 ## Unsolved Problems / Hurdles
+One of our biggest hurdles was setting up JWT Token security w/ the Cucumber Test methods. We could not figure out how to authenticate a user to run the tests, but were able to knowledge transfer with our classmates. They helped us successfully debug and refactor our tests to fix the errors we were having.
+
+We feel we've successfully completed the project to the requirements, so we don't have any unsolved problems. However, we did add some future considers for enhancements later on.
 
 ## Installation Instructions/ Dependencies
+
+In order to use this codebase you will need to make sure you have the following dependencies in your pom.xml file:
+
+```
+<dependencies>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter</artifactId>
+    </dependency>
+
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-test</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-rest</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-devtools</artifactId>
+        <scope>runtime</scope>
+        <optional>true</optional>
+    </dependency>
+    <dependency>
+        <groupId>com.h2database</groupId>
+        <artifactId>h2</artifactId>
+        <scope>runtime</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-jpa</artifactId>
+    </dependency>
+    <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-java</artifactId>
+        <version>${cucumber.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-junit</artifactId>
+        <version>${cucumber.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>io.cucumber</groupId>
+        <artifactId>cucumber-spring</artifactId>
+        <version>${cucumber.version}</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>rest-assured</artifactId>
+        <version>4.3.0</version>
+        <scope>test</scope>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <version>3.0.5</version>
+    </dependency>
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api -->
+    <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt-api</artifactId>
+        <version>0.11.5</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl -->
+    <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt-impl</artifactId>
+        <version>0.11.5</version>
+        <scope>runtime</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson -->
+    <dependency>
+        <groupId>io.jsonwebtoken</groupId>
+        <artifactId>jjwt-jackson</artifactId>
+        <version>0.11.5</version>
+        <scope>runtime</scope>
+    </dependency>
+</dependencies>
+```
+In order to successfully replicate/ run Cucumber Tests you will need to add this property to your pom.xml property tag:
+
+``<cucumber.version>6.8.1</cucumber.version>``
+
+## Credits
