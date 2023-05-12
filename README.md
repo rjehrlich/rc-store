@@ -4,12 +4,12 @@
 This project was created through the collaboration & teamwork of [Clair Rainwater](https://github.com/Crainh2o) and [Rachel Ehrlich](https://github.com/rjehrlich). Both coming from different backgrounds, this is Clair's first time coding and Rachel has beginner experience. Despite this, we were able to work well together and complete a successful project.
 
 ## Table of Contents
-* <a href="project-description"> Project Description</a>
-* <a href="tools-technologies"> Tools & Technologies</a>
-* <a href="general-approach"> General Project Approach</a>
-* <a href="unsolved-problems"> Unsolved Problems / Hurdles</a>
-* <a href="installation"> Installation Instructions/ Dependencies</a>
-* <a href="credits"> Credits</a>
+* <a href="README.md#project-description"> Project Description</a>
+* <a href="README.md#tools--technologies"> Tools & Technologies</a>
+* <a href="README.md#general-project-approach"> General Project Approach</a>
+* <a href="README.md#unsolved-problems--hurdles"> Unsolved Problems / Hurdles</a>
+* <a href="README.md#installation-instructions-dependencies"> Installation Instructions/ Dependencies</a>
+* <a href="README.md#credits"> Credits</a>
 
 ## Project Description
 RC Store API is a clothing wishlist app where you can store multiple products from your favorite brands to purchase later.
