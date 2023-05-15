@@ -58,12 +58,18 @@ public class ProductService {
         }
     }
 
+    /**
+     * createProduct initialized a new product object and uses the custom findByUserIdAndName
+     * method from the productRepository to then validate the current logged-in user. By passing in the:
+     * @param productObject
+     * @return a newly created product object if the user does not create one that already has the same name.
+     */
     public Product createProduct(Product productObject) {
         Product product = productRepository.findByUserIdAndName(ProductService.getCurrentLoggedInUser().getId(), productObject.getName());
         if (product != null) {
             throw new InformationExistException("Product with name already exist. ");
         } else {
-            // set the current logged in user to product object before saving to db
+            // set the current logged-in user to product object before saving to db
             productObject.setUser(getCurrentLoggedInUser());
             return productRepository.save(productObject);
 
