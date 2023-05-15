@@ -41,9 +41,9 @@ public class ProductController {
 
 
     /**
-     * Create product method takes in product object and checks if name already exists. If not return new object saved.
+     * createProduct method uses the PostMapping annotation & endpoint taking in product object:
      * @param productObject
-     * @return
+     * @return the logic called in the productService by the createProduct method
      */
     @PostMapping(path = "/products/")
     @ResponseStatus(HttpStatus.CREATED)
