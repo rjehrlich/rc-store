@@ -44,9 +44,9 @@ public class SpringBootCucumberTestDefinitions {
         return response.jsonPath().getString("message");
     }
 
+
     @Given("a list of products are available")
     public void aListOfProductsAreAvailable() {
-        System.out.println("calling list of product");
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -55,11 +55,8 @@ public class SpringBootCucumberTestDefinitions {
             ResponseEntity<String> response = new RestTemplate().exchange(BASE_URL + port + "/api/products/", HttpMethod.GET, request, String.class);
             List<Map<String, String>> products = JsonPath.from(String.valueOf(response.getBody())).getList("$");
             Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
-            System.out.println(products + "my products");
-            System.out.println("------------------------------------");// status 200
             Assert.assertTrue(products.size() > 0);
         } catch (HttpClientErrorException e) {
-            System.out.println("calling catch");
             e.printStackTrace();
         } catch (Exception e) {
             throw new RuntimeException(e);
